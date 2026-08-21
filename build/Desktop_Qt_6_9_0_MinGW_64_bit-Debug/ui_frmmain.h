@@ -45,6 +45,8 @@ public:
     QPushButton *pushButton;
     QSpinBox *spinBox;
     QPushButton *pushButton_2;
+    QLabel *labelName;
+    QLabel *labelBeschreibung;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -78,32 +80,32 @@ public:
         comboBox_2->addItem(QString());
         comboBox_2->addItem(QString());
         comboBox_2->setObjectName("comboBox_2");
-        comboBox_2->setGeometry(QRect(650, 290, 80, 20));
+        comboBox_2->setGeometry(QRect(650, 290, 111, 20));
         comboBox_3 = new QComboBox(centralwidget);
         comboBox_3->addItem(QString());
         comboBox_3->addItem(QString());
         comboBox_3->addItem(QString());
         comboBox_3->addItem(QString());
         comboBox_3->setObjectName("comboBox_3");
-        comboBox_3->setGeometry(QRect(650, 250, 80, 20));
+        comboBox_3->setGeometry(QRect(650, 250, 111, 20));
         comboBox_4 = new QComboBox(centralwidget);
         comboBox_4->addItem(QString());
         comboBox_4->addItem(QString());
         comboBox_4->setObjectName("comboBox_4");
-        comboBox_4->setGeometry(QRect(650, 200, 80, 20));
+        comboBox_4->setGeometry(QRect(650, 200, 111, 20));
         comboBox_5 = new QComboBox(centralwidget);
         comboBox_5->addItem(QString());
         comboBox_5->addItem(QString());
         comboBox_5->addItem(QString());
         comboBox_5->setObjectName("comboBox_5");
-        comboBox_5->setGeometry(QRect(650, 160, 80, 20));
+        comboBox_5->setGeometry(QRect(650, 160, 111, 20));
         comboBox_6 = new QComboBox(centralwidget);
         comboBox_6->addItem(QString());
         comboBox_6->addItem(QString());
         comboBox_6->addItem(QString());
         comboBox_6->addItem(QString());
         comboBox_6->setObjectName("comboBox_6");
-        comboBox_6->setGeometry(QRect(650, 120, 80, 20));
+        comboBox_6->setGeometry(QRect(650, 120, 111, 20));
         line = new QFrame(centralwidget);
         line->setObjectName("line");
         line->setGeometry(QRect(510, 10, 20, 531));
@@ -124,7 +126,7 @@ public:
         label_7->setFont(font);
         line_3 = new QFrame(centralwidget);
         line_3->setObjectName("line_3");
-        line_3->setGeometry(QRect(520, 55, 281, 21));
+        line_3->setGeometry(QRect(0, 60, 801, 20));
         line_3->setFrameShape(QFrame::Shape::HLine);
         line_3->setFrameShadow(QFrame::Shadow::Sunken);
         pushButton = new QPushButton(centralwidget);
@@ -136,6 +138,12 @@ public:
         pushButton_2 = new QPushButton(centralwidget);
         pushButton_2->setObjectName("pushButton_2");
         pushButton_2->setGeometry(QRect(0, 0, 131, 41));
+        labelName = new QLabel(centralwidget);
+        labelName->setObjectName("labelName");
+        labelName->setGeometry(QRect(10, 80, 141, 61));
+        labelBeschreibung = new QLabel(centralwidget);
+        labelBeschreibung->setObjectName("labelBeschreibung");
+        labelBeschreibung->setGeometry(QRect(190, 230, 151, 121));
         frmMain->setCentralWidget(centralwidget);
         menubar = new QMenuBar(frmMain);
         menubar->setObjectName("menubar");
@@ -183,6 +191,8 @@ public:
         label_7->setText(QCoreApplication::translate("frmMain", "Create Tasks", nullptr));
         pushButton->setText(QCoreApplication::translate("frmMain", "Create", nullptr));
         pushButton_2->setText(QCoreApplication::translate("frmMain", "Ticket W\303\244hlen", nullptr));
+        labelName->setText(QCoreApplication::translate("frmMain", "TextLabel", nullptr));
+        labelBeschreibung->setText(QCoreApplication::translate("frmMain", "TextLabel", nullptr));
     } // retranslateUi
 
 };

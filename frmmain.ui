@@ -97,7 +97,7 @@
      <rect>
       <x>650</x>
       <y>290</y>
-      <width>80</width>
+      <width>111</width>
       <height>20</height>
      </rect>
     </property>
@@ -122,7 +122,7 @@
      <rect>
       <x>650</x>
       <y>250</y>
-      <width>80</width>
+      <width>111</width>
       <height>20</height>
      </rect>
     </property>
@@ -152,7 +152,7 @@
      <rect>
       <x>650</x>
       <y>200</y>
-      <width>80</width>
+      <width>111</width>
       <height>20</height>
      </rect>
     </property>
@@ -172,7 +172,7 @@
      <rect>
       <x>650</x>
       <y>160</y>
-      <width>80</width>
+      <width>111</width>
       <height>20</height>
      </rect>
     </property>
@@ -197,7 +197,7 @@
      <rect>
       <x>650</x>
       <y>120</y>
-      <width>80</width>
+      <width>111</width>
       <height>20</height>
      </rect>
     </property>
@@ -271,10 +271,10 @@
    <widget class="Line" name="line_3">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>55</y>
-      <width>281</width>
-      <height>21</height>
+      <x>0</x>
+      <y>60</y>
+      <width>801</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="orientation">
@@ -315,6 +315,32 @@
     </property>
     <property name="text">
      <string>Ticket Wählen</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelName">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>80</y>
+      <width>141</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelBeschreibung">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>230</y>
+      <width>151</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
     </property>
    </widget>
   </widget>

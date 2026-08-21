@@ -10,14 +10,13 @@
 #define UI_TIKETWAHL_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAbstractButton>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
-#include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QTextEdit>
 
 QT_BEGIN_NAMESPACE
@@ -25,32 +24,30 @@ QT_BEGIN_NAMESPACE
 class Ui_TiketWahl
 {
 public:
-    QDialogButtonBox *buttonBox;
     QLabel *label;
-    QComboBox *comboBox;
+    QComboBox *comboBoxBestehendeTickets;
     QFrame *line;
     QLabel *label_2;
     QLabel *label_3;
     QLabel *label_4;
     QLineEdit *lineEdit;
     QTextEdit *textEdit;
+    QPushButton *pushButton;
+    QLabel *label_5;
+    QPushButton *pushButtonOK;
+    QPushButton *pushButtonAbbrechen;
 
     void setupUi(QDialog *TiketWahl)
     {
         if (TiketWahl->objectName().isEmpty())
             TiketWahl->setObjectName("TiketWahl");
-        TiketWahl->resize(400, 300);
-        buttonBox = new QDialogButtonBox(TiketWahl);
-        buttonBox->setObjectName("buttonBox");
-        buttonBox->setGeometry(QRect(310, 50, 81, 241));
-        buttonBox->setOrientation(Qt::Vertical);
-        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+        TiketWahl->resize(402, 306);
         label = new QLabel(TiketWahl);
         label->setObjectName("label");
-        label->setGeometry(QRect(10, 40, 131, 20));
-        comboBox = new QComboBox(TiketWahl);
-        comboBox->setObjectName("comboBox");
-        comboBox->setGeometry(QRect(150, 40, 101, 26));
+        label->setGeometry(QRect(10, 60, 131, 20));
+        comboBoxBestehendeTickets = new QComboBox(TiketWahl);
+        comboBoxBestehendeTickets->setObjectName("comboBoxBestehendeTickets");
+        comboBoxBestehendeTickets->setGeometry(QRect(150, 60, 101, 26));
         line = new QFrame(TiketWahl);
         line->setObjectName("line");
         line->setGeometry(QRect(0, 115, 401, 41));
@@ -71,10 +68,20 @@ public:
         textEdit = new QTextEdit(TiketWahl);
         textEdit->setObjectName("textEdit");
         textEdit->setGeometry(QRect(200, 210, 181, 87));
+        pushButton = new QPushButton(TiketWahl);
+        pushButton->setObjectName("pushButton");
+        pushButton->setGeometry(QRect(10, 260, 111, 29));
+        label_5 = new QLabel(TiketWahl);
+        label_5->setObjectName("label_5");
+        label_5->setGeometry(QRect(10, 0, 121, 20));
+        pushButtonOK = new QPushButton(TiketWahl);
+        pushButtonOK->setObjectName("pushButtonOK");
+        pushButtonOK->setGeometry(QRect(322, 30, 61, 29));
+        pushButtonAbbrechen = new QPushButton(TiketWahl);
+        pushButtonAbbrechen->setObjectName("pushButtonAbbrechen");
+        pushButtonAbbrechen->setGeometry(QRect(290, 70, 93, 29));
 
         retranslateUi(TiketWahl);
-        QObject::connect(buttonBox, &QDialogButtonBox::accepted, TiketWahl, qOverload<>(&QDialog::accept));
-        QObject::connect(buttonBox, &QDialogButtonBox::rejected, TiketWahl, qOverload<>(&QDialog::reject));
 
         QMetaObject::connectSlotsByName(TiketWahl);
     } // setupUi
@@ -88,6 +95,10 @@ public:
         label_4->setText(QCoreApplication::translate("TiketWahl", "Beschreibung", nullptr));
         lineEdit->setPlaceholderText(QCoreApplication::translate("TiketWahl", "Name...", nullptr));
         textEdit->setPlaceholderText(QCoreApplication::translate("TiketWahl", "Beschreibung...", nullptr));
+        pushButton->setText(QCoreApplication::translate("TiketWahl", "Ticket erstellen", nullptr));
+        label_5->setText(QCoreApplication::translate("TiketWahl", "Ticket bearbeiten", nullptr));
+        pushButtonOK->setText(QCoreApplication::translate("TiketWahl", "OK", nullptr));
+        pushButtonAbbrechen->setText(QCoreApplication::translate("TiketWahl", "Abbrechen", nullptr));
     } // retranslateUi
 
 };

@@ -16,7 +16,14 @@ frmMain::~frmMain()
 
 void frmMain::on_pushButton_2_clicked()
 {
-    TiketWahl *popup = new TiketWahl(this);
-    popup->exec();
+    TiketWahl dialog(this);
+    if (dialog.exec() == QDialog::Accepted) {
+        Ticket t = dialog.getSelectedTicket();
+        ui->labelName->setText(t.name);
+        ui->labelBeschreibung->setText(t.beschreibung);
+    }
 }
+
+
+
 
