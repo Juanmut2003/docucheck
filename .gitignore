@@ -1,0 +1,42 @@
+# Qt build directories
+build/
+build-*/
+*-build-*/
+
+# Qt-generated files
+*.pro.user
+*.pro.user.*
+*.autosave
+Makefile
+Makefile.*
+object_script.*
+*.o
+*.obj
+moc_*.cpp
+moc_*.h
+moc_predefs.h
+qrc_*.cpp
+ui_*.h
+*.qmake.stash
+.qmake.cache
+*_plugin_import.cpp
+
+# Qt Creator generated
+*.qbs.user
+*.qbs.user.*
+CMakeLists.txt.user
+CMakeLists.txt.user.*
+
+# Compiled binaries
+*.exe
+*.dll
+*.so
+*.dylib
+*.app
+
+# Debug/release output
+debug/
+release/
+
+# macOS
+.DS_Store
