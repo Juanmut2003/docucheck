@@ -329,18 +329,24 @@
     <property name="text">
      <string>TextLabel</string>
     </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLabel" name="labelBeschreibung">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>130</x>
       <y>230</y>
-      <width>151</width>
+      <width>211</width>
       <height>121</height>
      </rect>
     </property>
     <property name="text">
      <string>TextLabel</string>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
