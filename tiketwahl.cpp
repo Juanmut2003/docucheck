@@ -2,15 +2,14 @@
 #include "ui_tiketwahl.h"
 #include <QMessageBox>
 
-TiketWahl::TiketWahl(QWidget *parent)
+TiketWahl::TiketWahl(TicketList &ticketList, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::TiketWahl)
+    , tickets(ticketList)
 {
     ui->setupUi(this);
 
-    tickets = Ticket::dummyTickets();
-
-    for (const Ticket &t : tickets) {
+    for (const Ticket &t : tickets.all()) {
         ui->comboBoxBestehendeTickets->addItem(t.title);
     }
 
@@ -47,7 +46,7 @@ void TiketWahl::onTicketErstellenClicked()
     neuesTicket.title = name;
     neuesTicket.description = beschreibung;
 
-    tickets.append(neuesTicket);
+    tickets.add(neuesTicket);
     ui->comboBoxBestehendeTickets->addItem(neuesTicket.title);
     ui->comboBoxBestehendeTickets->setCurrentIndex(ui->comboBoxBestehendeTickets->count() - 1);
 

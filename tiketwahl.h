@@ -3,9 +3,9 @@
 
 #include <QDialog>
 #include <QString>
-#include <QList>
 
 #include "ticket.h"
+#include "ticketlist.h"
 
 namespace Ui {
 class TiketWahl;
@@ -16,7 +16,7 @@ class TiketWahl : public QDialog
     Q_OBJECT
 
 public:
-    explicit TiketWahl(QWidget *parent = nullptr);
+    explicit TiketWahl(TicketList &ticketList, QWidget *parent = nullptr);
     ~TiketWahl();
 
     Ticket getSelectedTicket() const;
@@ -24,7 +24,8 @@ public:
 private:
     void onTicketErstellenClicked();
     Ui::TiketWahl *ui;
-    QList<Ticket> tickets;
+    // Shared ticket model owned by the main window.
+    TicketList &tickets;
 };
 
 

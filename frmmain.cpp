@@ -7,6 +7,9 @@ frmMain::frmMain(QWidget *parent)
     , ui(new Ui::frmMain)
 {
     ui->setupUi(this);
+
+    // Add a few dummy tickets right when the app opens (issue #7).
+    tickets.addDummyTickets();
 }
 
 frmMain::~frmMain()
@@ -16,14 +19,10 @@ frmMain::~frmMain()
 
 void frmMain::on_pushButton_2_clicked()
 {
-    TiketWahl dialog(this);
+    TiketWahl dialog(tickets, this);
     if (dialog.exec() == QDialog::Accepted) {
         Ticket t = dialog.getSelectedTicket();
         ui->labelName->setText(t.title);
         ui->labelBeschreibung->setText(t.description);
     }
 }
-
-
-
-
