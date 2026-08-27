@@ -44,11 +44,11 @@ void TiketWahl::onTicketErstellenClicked()
     }
 
     Ticket neuesTicket;
-    neuesTicket.name = name;
-    neuesTicket.beschreibung = beschreibung;
+    neuesTicket.title = name;
+    neuesTicket.description = beschreibung;
 
     tickets.append(neuesTicket);
-    ui->comboBoxBestehendeTickets->addItem(neuesTicket.name);
+    ui->comboBoxBestehendeTickets->addItem(neuesTicket.title);
     ui->comboBoxBestehendeTickets->setCurrentIndex(ui->comboBoxBestehendeTickets->count() - 1);
 
     ui->lineEdit->clear();
