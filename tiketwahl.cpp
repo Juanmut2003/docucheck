@@ -1,5 +1,6 @@
 #include "tiketwahl.h"
 #include "ui_tiketwahl.h"
+#include <QMessageBox>
 
 TiketWahl::TiketWahl(QWidget *parent)
     : QDialog(parent)
@@ -19,6 +20,7 @@ TiketWahl::TiketWahl(QWidget *parent)
 
     connect(ui->pushButtonOK, &QPushButton::clicked, this, &TiketWahl::accept);
     connect(ui->pushButtonAbbrechen, &QPushButton::clicked, this, &TiketWahl::reject);
+    connect(ui->pushButton, &QPushButton::clicked, this, &TiketWahl::onTicketErstellenClicked);
 }
 
 
@@ -34,4 +36,25 @@ Ticket TiketWahl::getSelectedTicket() const
     if (index >= 0 && index < tickets.size())
         return tickets.at(index);
     return Ticket{};
+}
+void TiketWahl::onTicketErstellenClicked()
+{
+    QString name = ui->lineEdit->text().trimmed();
+    QString beschreibung = ui->textEdit->toPlainText().trimmed();
+
+    if (name.isEmpty()) {
+        QMessageBox::warning(this, "Fehler", "Bitte einen Namen für das Ticket eingeben.");
+        return;
+    }
+
+    Ticket neuesTicket;
+    neuesTicket.name = name;
+    neuesTicket.beschreibung = beschreibung;
+
+    tickets.append(neuesTicket);
+    ui->comboBoxBestehendeTickets->addItem(neuesTicket.name);
+    ui->comboBoxBestehendeTickets->setCurrentIndex(ui->comboBoxBestehendeTickets->count() - 1);
+
+    ui->lineEdit->clear();
+    ui->textEdit->clear();
 }

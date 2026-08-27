@@ -25,6 +25,7 @@ public:
     Ticket getSelectedTicket() const;
 
 private:
+    void onTicketErstellenClicked();
     Ui::TiketWahl *ui;
     QList<Ticket> tickets;
 };
