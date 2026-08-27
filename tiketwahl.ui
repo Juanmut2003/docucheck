@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Bestehende Tickets</string>
+    <string>Existing Tickets</string>
    </property>
   </widget>
   <widget class="QComboBox" name="comboBoxBestehendeTickets">
@@ -46,7 +46,7 @@
     </rect>
    </property>
    <property name="orientation">
-    <enum>Qt::Horizontal</enum>
+    <enum>Qt::Orientation::Horizontal</enum>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -59,7 +59,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Ticket Erstellen</string>
+    <string>Create Ticket</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -85,7 +85,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Beschreibung</string>
+    <string>Description</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit">
@@ -111,7 +111,7 @@
     </rect>
    </property>
    <property name="placeholderText">
-    <string>Beschreibung...</string>
+    <string>Description...</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton">
@@ -124,7 +124,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Ticket erstellen</string>
+    <string>Create Ticket</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_5">
@@ -137,7 +137,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Ticket bearbeiten</string>
+    <string>Edit Ticket</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButtonOK">
@@ -163,7 +163,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Abbrechen</string>
+    <string>Cancel</string>
    </property>
   </widget>
  </widget>
