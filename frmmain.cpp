@@ -19,8 +19,8 @@ void frmMain::on_pushButton_2_clicked()
     TiketWahl dialog(this);
     if (dialog.exec() == QDialog::Accepted) {
         Ticket t = dialog.getSelectedTicket();
-        ui->labelName->setText(t.name);
-        ui->labelBeschreibung->setText(t.beschreibung);
+        ui->labelName->setText(t.title);
+        ui->labelBeschreibung->setText(t.description);
     }
 }
 
