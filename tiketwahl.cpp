@@ -7,14 +7,10 @@ TiketWahl::TiketWahl(QWidget *parent)
 {
     ui->setupUi(this);
 
-    tickets = {
-        {"Login-Bug", "Der Login-Button reagiert nicht auf Klick."},
-        {"Ladezeit zu lang", "Die Startseite braucht über 5 Sekunden zum Laden."},
-        {"Darkmode fehlt", "Es gibt noch keine Möglichkeit, den Darkmode zu aktivieren."}
-    };
+    tickets = Ticket::dummyTickets();
 
     for (const Ticket &t : tickets) {
-        ui->comboBoxBestehendeTickets->addItem(t.name);
+        ui->comboBoxBestehendeTickets->addItem(t.title);
     }
 
     connect(ui->pushButtonOK, &QPushButton::clicked, this, &TiketWahl::accept);

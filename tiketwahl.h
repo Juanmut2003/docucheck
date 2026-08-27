@@ -5,14 +5,11 @@
 #include <QString>
 #include <QList>
 
+#include "ticket.h"
+
 namespace Ui {
 class TiketWahl;
 }
-
-struct Ticket {
-    QString name;
-    QString beschreibung;
-};
 
 class TiketWahl : public QDialog
 {
