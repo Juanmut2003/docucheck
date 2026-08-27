@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "ticketlist.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class frmMain;
@@ -22,5 +24,7 @@ private slots:
 
 private:
     Ui::frmMain *ui;
+    // All existing tickets, seeded with dummy tickets on start (issue #7).
+    TicketList tickets;
 };
 #endif // FRMMAIN_H
