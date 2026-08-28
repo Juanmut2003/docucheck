@@ -327,7 +327,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>Name</string>
     </property>
     <property name="wordWrap">
      <bool>true</bool>
@@ -343,7 +343,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>Description</string>
     </property>
     <property name="wordWrap">
      <bool>true</bool>
