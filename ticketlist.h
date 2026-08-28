@@ -19,6 +19,8 @@ public:
 
     // Appends a single ticket (e.g. one created in the dialog).
     void add(const Ticket &ticket);
+    // Replaces the ticket at the given index (used by the detail panel's Save).
+    void update(int index, const Ticket &ticket);
     void clear();
 
     bool isEmpty() const;
