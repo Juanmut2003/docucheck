@@ -61,4 +61,7 @@ void TiketWahl::onTicketErstellenClicked()
 
     ui->lineEdit->clear();
     ui->textEdit->clear();
+
+    // Neu erstelltes Ticket direkt in der Detailansicht öffnen
+    accept();
 }
