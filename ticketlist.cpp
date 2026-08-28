@@ -2,18 +2,25 @@
 
 void TicketList::addDummyTickets()
 {
-    m_tickets.append(Ticket::dummyTickets());
+    const QList<Ticket> dummies = Ticket::dummyTickets();
+    for (const Ticket &t : dummies)
+        add(t);
 }
 
 void TicketList::add(const Ticket &ticket)
 {
-    m_tickets.append(ticket);
+    Ticket t = ticket;
+    t.id = m_nextId++;
+    m_tickets.append(t);
 }
 
 void TicketList::update(int index, const Ticket &ticket)
 {
-    if (index >= 0 && index < m_tickets.size())
-        m_tickets[index] = ticket;
+    if (index >= 0 && index < m_tickets.size()) {
+        Ticket t = ticket;
+        t.id = m_tickets[index].id; // laufende Nummer bleibt erhalten
+        m_tickets[index] = t;
+    }
 }
 
 void TicketList::clear()

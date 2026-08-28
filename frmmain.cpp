@@ -3,6 +3,7 @@
 #include "tiketwahl.h"
 
 #include <QComboBox>
+#include <QRegularExpression>
 
 namespace {
 
@@ -64,7 +65,7 @@ frmMain::~frmMain()
 
 void frmMain::showTicket(const Ticket &t)
 {
-    ui->lineEditName->setText(t.title);
+    ui->lineEditName->setText(t.displayName());
     ui->plainTextEditBeschreibung->setPlainText(t.description);
 
     setComboValue(ui->comboBox_6, t.project);
@@ -90,7 +91,10 @@ void frmMain::on_pushButton_clicked()
         return;
 
     Ticket t = tickets.at(currentTicketIndex);
-    t.title = ui->lineEditName->text();
+    // Fuehrende laufende Nummer ("#1 - ") wieder entfernen, nur den Titel speichern
+    QString name = ui->lineEditName->text();
+    name.remove(QRegularExpression(QStringLiteral("^#\\d+ - ")));
+    t.title = name;
     t.description = ui->plainTextEditBeschreibung->toPlainText();
     t.project = ui->comboBox_6->currentText();
     t.priority = priorityFromString(ui->comboBox_5->currentText());
