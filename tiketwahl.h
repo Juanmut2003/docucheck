@@ -20,13 +20,11 @@ public:
     ~TiketWahl();
 
     Ticket getSelectedTicket() const;
-    // Index of the chosen ticket in the shared TicketList, or -1 if none.
     int getSelectedIndex() const;
 
 private:
     void onTicketErstellenClicked();
     Ui::TiketWahl *ui;
-    // Shared ticket model owned by the main window.
     TicketList &tickets;
 };
 

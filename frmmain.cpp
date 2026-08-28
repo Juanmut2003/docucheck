@@ -6,9 +6,6 @@
 
 namespace {
 
-// Selects the item with the given text, adding it first if the combo box does
-// not contain it yet. Keeps the detail panel usable for values that are not
-// part of the predefined list.
 void setComboValue(QComboBox *combo, const QString &value)
 {
     int index = combo->findText(value);
@@ -48,16 +45,12 @@ frmMain::frmMain(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // Let a click on the empty panel background pull focus out of the
-    // description / name editors again.
     ui->centralwidget->setFocusPolicy(Qt::ClickFocus);
-    // Tab moves to the next field instead of inserting a tab character.
+
     ui->plainTextEditBeschreibung->setTabChangesFocus(true);
 
-    // Add a few dummy tickets right when the app opens (issue #7).
     tickets.addDummyTickets();
 
-    // Show the first ticket right away instead of an empty panel.
     if (!tickets.isEmpty()) {
         currentTicketIndex = 0;
         showTicket(tickets.at(0));
@@ -91,8 +84,6 @@ void frmMain::on_pushButton_2_clicked()
     }
 }
 
-// "Save" button of the detail panel: persist the edited fields back into the
-// shared ticket list. Nothing is written before this is clicked (issue #8).
 void frmMain::on_pushButton_clicked()
 {
     if (currentTicketIndex < 0)
