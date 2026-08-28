@@ -30,6 +30,13 @@ QString ticketTypeToString(TicketType type)
     return QString();
 }
 
+QString Ticket::displayName() const
+{
+    if (id <= 0)
+        return title;
+    return QStringLiteral("#%1 - %2").arg(id).arg(title);
+}
+
 QList<Ticket> Ticket::dummyTickets()
 {
     QList<Ticket> tickets;

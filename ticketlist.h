@@ -23,6 +23,7 @@ public:
 
 private:
     QList<Ticket> m_tickets;
+    int m_nextId = 1;
 };
 
 #endif // TICKETLIST_H

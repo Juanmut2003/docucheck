@@ -28,6 +28,7 @@ QString statusToString(Status status);
 QString ticketTypeToString(TicketType type);
 
 struct Ticket {
+    int id = 0;
     QString title;
     QString description;
     QString project;
@@ -37,6 +38,9 @@ struct Ticket {
     TicketType type = TicketType::Feature;
     int storyPoints = 0;
     QDateTime createdAt = QDateTime::currentDateTime();
+
+    // Anzeigename inkl. laufender Nummer, z.B. "#1 - Login-Bug"
+    QString displayName() const;
 
     static QList<Ticket> dummyTickets();
 };
