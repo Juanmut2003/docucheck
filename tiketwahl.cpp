@@ -2,20 +2,15 @@
 #include "ui_tiketwahl.h"
 #include <QMessageBox>
 
-TiketWahl::TiketWahl(QWidget *parent)
+TiketWahl::TiketWahl(TicketList &ticketList, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::TiketWahl)
+    , tickets(ticketList)
 {
     ui->setupUi(this);
 
-    tickets = {
-        {"Login-Bug", "Der Login-Button reagiert nicht auf Klick."},
-        {"Ladezeit zu lang", "Die Startseite braucht über 5 Sekunden zum Laden."},
-        {"Darkmode fehlt", "Es gibt noch keine Möglichkeit, den Darkmode zu aktivieren."}
-    };
-
-    for (const Ticket &t : tickets) {
-        ui->comboBoxBestehendeTickets->addItem(t.name);
+    for (const Ticket &t : tickets.all()) {
+        ui->comboBoxBestehendeTickets->addItem(t.title);
     }
 
     connect(ui->pushButtonOK, &QPushButton::clicked, this, &TiketWahl::accept);
@@ -37,6 +32,15 @@ Ticket TiketWahl::getSelectedTicket() const
         return tickets.at(index);
     return Ticket{};
 }
+
+int TiketWahl::getSelectedIndex() const
+{
+    int index = ui->comboBoxBestehendeTickets->currentIndex();
+    if (index >= 0 && index < tickets.size())
+        return index;
+    return -1;
+}
+
 void TiketWahl::onTicketErstellenClicked()
 {
     QString name = ui->lineEdit->text().trimmed();
@@ -48,11 +52,11 @@ void TiketWahl::onTicketErstellenClicked()
     }
 
     Ticket neuesTicket;
-    neuesTicket.name = name;
-    neuesTicket.beschreibung = beschreibung;
+    neuesTicket.title = name;
+    neuesTicket.description = beschreibung;
 
-    tickets.append(neuesTicket);
-    ui->comboBoxBestehendeTickets->addItem(neuesTicket.name);
+    tickets.add(neuesTicket);
+    ui->comboBoxBestehendeTickets->addItem(neuesTicket.title);
     ui->comboBoxBestehendeTickets->setCurrentIndex(ui->comboBoxBestehendeTickets->count() - 1);
 
     ui->lineEdit->clear();

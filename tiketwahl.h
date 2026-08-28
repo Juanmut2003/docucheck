@@ -3,31 +3,29 @@
 
 #include <QDialog>
 #include <QString>
-#include <QList>
+
+#include "ticket.h"
+#include "ticketlist.h"
 
 namespace Ui {
 class TiketWahl;
 }
-
-struct Ticket {
-    QString name;
-    QString beschreibung;
-};
 
 class TiketWahl : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit TiketWahl(QWidget *parent = nullptr);
+    explicit TiketWahl(TicketList &ticketList, QWidget *parent = nullptr);
     ~TiketWahl();
 
     Ticket getSelectedTicket() const;
+    int getSelectedIndex() const;
 
 private:
     void onTicketErstellenClicked();
     Ui::TiketWahl *ui;
-    QList<Ticket> tickets;
+    TicketList &tickets;
 };
 
 

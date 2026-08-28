@@ -11,10 +11,14 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     frmmain.cpp \
+    ticket.cpp \
+    ticketlist.cpp \
     tiketwahl.cpp
 
 HEADERS += \
     frmmain.h \
+    ticket.h \
+    ticketlist.h \
     tiketwahl.h
 
 FORMS += \

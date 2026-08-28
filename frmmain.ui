@@ -128,12 +128,12 @@
     </property>
     <item>
      <property name="text">
-      <string>Planing</string>
+      <string>Planning</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>in Progress</string>
+      <string>In Progress</string>
      </property>
     </item>
     <item>
@@ -143,7 +143,7 @@
     </item>
     <item>
      <property name="text">
-      <string>Produktion</string>
+      <string>Production</string>
      </property>
     </item>
    </widget>
@@ -232,7 +232,7 @@
      </rect>
     </property>
     <property name="orientation">
-     <enum>Qt::Vertical</enum>
+     <enum>Qt::Orientation::Vertical</enum>
     </property>
    </widget>
    <widget class="Line" name="line_2">
@@ -245,7 +245,7 @@
      </rect>
     </property>
     <property name="orientation">
-     <enum>Qt::Horizontal</enum>
+     <enum>Qt::Orientation::Horizontal</enum>
     </property>
    </widget>
    <widget class="QLabel" name="label_7">
@@ -265,7 +265,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Create Tasks</string>
+     <string>Update Ticket</string>
     </property>
    </widget>
    <widget class="Line" name="line_3">
@@ -278,7 +278,7 @@
      </rect>
     </property>
     <property name="orientation">
-     <enum>Qt::Horizontal</enum>
+     <enum>Qt::Orientation::Horizontal</enum>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
@@ -299,9 +299,12 @@
      <rect>
       <x>650</x>
       <y>340</y>
-      <width>81</width>
+      <width>111</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="maximum">
+     <number>999</number>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_2">
@@ -317,36 +320,50 @@
      <string>Select Ticket</string>
     </property>
    </widget>
-   <widget class="QLabel" name="labelName">
+   <widget class="QLabel" name="labelNameCaption">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>80</y>
       <width>141</width>
-      <height>61</height>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
-    </property>
-    <property name="wordWrap">
-     <bool>true</bool>
+     <string>Name</string>
     </property>
    </widget>
-   <widget class="QLabel" name="labelBeschreibung">
+   <widget class="QLineEdit" name="lineEditName">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>230</y>
-      <width>211</width>
-      <height>121</height>
+      <x>10</x>
+      <y>102</y>
+      <width>330</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelBeschreibungCaption">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>141</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>Description</string>
     </property>
-    <property name="wordWrap">
-     <bool>true</bool>
+   </widget>
+   <widget class="QPlainTextEdit" name="plainTextEditBeschreibung">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>162</y>
+      <width>330</width>
+      <height>200</height>
+     </rect>
     </property>
    </widget>
   </widget>
@@ -356,7 +373,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>30</height>
     </rect>
    </property>
   </widget>
