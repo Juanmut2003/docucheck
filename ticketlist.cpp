@@ -10,6 +10,12 @@ void TicketList::add(const Ticket &ticket)
     m_tickets.append(ticket);
 }
 
+void TicketList::update(int index, const Ticket &ticket)
+{
+    if (index >= 0 && index < m_tickets.size())
+        m_tickets[index] = ticket;
+}
+
 void TicketList::clear()
 {
     m_tickets.clear();

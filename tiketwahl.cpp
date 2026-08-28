@@ -32,6 +32,15 @@ Ticket TiketWahl::getSelectedTicket() const
         return tickets.at(index);
     return Ticket{};
 }
+
+int TiketWahl::getSelectedIndex() const
+{
+    int index = ui->comboBoxBestehendeTickets->currentIndex();
+    if (index >= 0 && index < tickets.size())
+        return index;
+    return -1;
+}
+
 void TiketWahl::onTicketErstellenClicked()
 {
     QString name = ui->lineEdit->text().trimmed();
