@@ -24,6 +24,7 @@ public:
 
 private:
     void onTicketErstellenClicked();
+    void addTicketItem(const QString &title);
     Ui::TiketWahl *ui;
     TicketList &tickets;
 };
