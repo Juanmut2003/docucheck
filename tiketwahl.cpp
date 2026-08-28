@@ -1,6 +1,28 @@
 #include "tiketwahl.h"
 #include "ui_tiketwahl.h"
 #include <QMessageBox>
+#include <QComboBox>
+#include <QFontMetrics>
+#include <QStyle>
+#include <QStyleOptionComboBox>
+
+void TiketWahl::addTicketItem(const QString &title)
+{
+    QComboBox *combo = ui->comboBoxBestehendeTickets;
+
+    // Exakte Breite des Textbereichs vom aktuellen Style erfragen
+    QStyleOptionComboBox opt;
+    opt.initFrom(combo);
+    const QRect editRect = combo->style()->subControlRect(
+        QStyle::CC_ComboBox, &opt, QStyle::SC_ComboBoxEditField, combo);
+    // Der native macOS-Style zeichnet den Text mit zusaetzlichem Innenabstand,
+    // daher eine groesszuegige Sicherheitsmarge abziehen.
+    const int maxTextWidth = editRect.width() - 18;
+
+    const QString shown = combo->fontMetrics().elidedText(title, Qt::ElideRight, maxTextWidth);
+    combo->addItem(shown);
+    combo->setItemData(combo->count() - 1, title, Qt::ToolTipRole);
+}
 
 TiketWahl::TiketWahl(TicketList &ticketList, QWidget *parent)
     : QDialog(parent)
@@ -10,7 +32,7 @@ TiketWahl::TiketWahl(TicketList &ticketList, QWidget *parent)
     ui->setupUi(this);
 
     for (const Ticket &t : tickets.all()) {
-        ui->comboBoxBestehendeTickets->addItem(t.title);
+        addTicketItem(t.title);
     }
 
     connect(ui->pushButtonOK, &QPushButton::clicked, this, &TiketWahl::accept);
@@ -47,7 +69,7 @@ void TiketWahl::onTicketErstellenClicked()
     neuesTicket.description = beschreibung;
 
     tickets.add(neuesTicket);
-    ui->comboBoxBestehendeTickets->addItem(neuesTicket.title);
+    addTicketItem(neuesTicket.title);
     ui->comboBoxBestehendeTickets->setCurrentIndex(ui->comboBoxBestehendeTickets->count() - 1);
 
     ui->lineEdit->clear();
