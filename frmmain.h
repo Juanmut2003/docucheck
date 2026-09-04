@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 
+#include "assigneelist.h"
 #include "projectlist.h"
 #include "ticketlist.h"
 
@@ -29,10 +30,12 @@ private slots:
 private:
     void showTicket(const Ticket &ticket);
     void refreshProjectCombo();
+    void refreshAssigneeCombo();
 
     Ui::frmMain *ui;
     TicketList tickets;
     ProjectList projects;
+    AssigneeList assignees;
     int currentTicketIndex = -1;
 };
 #endif // FRMMAIN_H

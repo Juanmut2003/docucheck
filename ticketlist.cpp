@@ -36,6 +36,14 @@ void TicketList::clearProject(const QString &projectName)
     }
 }
 
+void TicketList::clearAssignee(const QString &assigneeName)
+{
+    for (Ticket &t : m_tickets) {
+        if (t.assignee == assigneeName)
+            t.assignee.clear();
+    }
+}
+
 bool TicketList::isEmpty() const
 {
     return m_tickets.isEmpty();

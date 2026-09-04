@@ -10,9 +10,10 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
+    assigneelist.cpp \
     frmmain.cpp \
     projectlist.cpp \
-    projektverwaltung.cpp \
+    stammdatenverwaltung.cpp \
     ticket.cpp \
     ticketerstellen.cpp \
     ticketlist.cpp \
@@ -20,9 +21,10 @@ SOURCES += \
 
 HEADERS += \
     appstyle.h \
+    assigneelist.h \
     frmmain.h \
     projectlist.h \
-    projektverwaltung.h \
+    stammdatenverwaltung.h \
     ticket.h \
     ticketerstellen.h \
     ticketlist.h \
@@ -30,7 +32,7 @@ HEADERS += \
 
 FORMS += \
     frmmain.ui \
-    projektverwaltung.ui \
+    stammdatenverwaltung.ui \
     ticketerstellen.ui \
     tiketwahl.ui
 

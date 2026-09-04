@@ -2,7 +2,7 @@
 #include "ui_frmmain.h"
 #include "tiketwahl.h"
 #include "ticketerstellen.h"
-#include "projektverwaltung.h"
+#include "stammdatenverwaltung.h"
 
 #include <QComboBox>
 #include <QRegularExpression>
@@ -53,9 +53,11 @@ frmMain::frmMain(QWidget *parent)
     ui->plainTextEditDescription->setTabChangesFocus(true);
 
     projects.addDefaults();
+    assignees.addDefaults();
     tickets.addDummyTickets();
 
     refreshProjectCombo();
+    refreshAssigneeCombo();
 
     if (!tickets.isEmpty()) {
         currentTicketIndex = 0;
@@ -73,6 +75,13 @@ void frmMain::refreshProjectCombo()
     ui->comboProject->clear();
     ui->comboProject->addItem(QString()); // Platzhalter fuer "kein Projekt"
     ui->comboProject->addItems(projects.all());
+}
+
+void frmMain::refreshAssigneeCombo()
+{
+    ui->comboAssignee->clear();
+    ui->comboAssignee->addItem(QString()); // Platzhalter fuer "kein Assignee"
+    ui->comboAssignee->addItems(assignees.all());
 }
 
 void frmMain::showTicket(const Ticket &t)
@@ -109,15 +118,19 @@ void frmMain::on_pushButtonCreateTicket_clicked()
 
 void frmMain::on_pushButtonManageProjects_clicked()
 {
-    ProjektVerwaltung dialog(projects, tickets, this);
+    StammdatenVerwaltung dialog(projects, assignees, tickets, this);
     dialog.exec();
 
     refreshProjectCombo();
+    refreshAssigneeCombo();
 
-    // Falls das Projekt des aktuell angezeigten Tickets geloescht wurde, hier nachziehen,
-    // ohne die restlichen (evtl. ungespeicherten) Formularfelder anzutasten.
-    if (currentTicketIndex >= 0 && currentTicketIndex < tickets.size())
-        setComboValue(ui->comboProject, tickets.at(currentTicketIndex).project);
+    // Falls Projekt oder Assignee des aktuell angezeigten Tickets geloescht wurden, hier
+    // nachziehen, ohne die restlichen (evtl. ungespeicherten) Formularfelder anzutasten.
+    if (currentTicketIndex >= 0 && currentTicketIndex < tickets.size()) {
+        const Ticket &t = tickets.at(currentTicketIndex);
+        setComboValue(ui->comboProject, t.project);
+        setComboValue(ui->comboAssignee, t.assignee);
+    }
 }
 
 void frmMain::on_pushButtonSave_clicked()
