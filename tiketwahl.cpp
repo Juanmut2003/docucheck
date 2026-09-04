@@ -13,14 +13,7 @@ void TiketWahl::addTicketItem(const QString &title, int ticketIndex)
 void TiketWahl::populateProjectCombo()
 {
     QComboBox *combo = ui->comboProjectFilter;
-    QStringList projects;
-    for (const Ticket &t : tickets.all()) {
-        if (!t.project.isEmpty() && !projects.contains(t.project))
-            projects.append(t.project);
-    }
-    projects.sort(Qt::CaseInsensitive);
-
-    combo->addItems(projects);
+    combo->addItems(projects.all());
     combo->setCurrentIndex(-1); // Beim Oeffnen soll kein Projekt vorausgewaehlt sein.
 }
 
@@ -36,10 +29,11 @@ void TiketWahl::populateTicketCombo(const QString &projectFilter)
     }
 }
 
-TiketWahl::TiketWahl(TicketList &ticketList, QWidget *parent)
+TiketWahl::TiketWahl(TicketList &ticketList, ProjectList &projectList, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::TiketWahl)
     , tickets(ticketList)
+    , projects(projectList)
 {
     ui->setupUi(this);
 

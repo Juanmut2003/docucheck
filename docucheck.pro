@@ -11,6 +11,8 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     frmmain.cpp \
+    projectlist.cpp \
+    projektverwaltung.cpp \
     ticket.cpp \
     ticketerstellen.cpp \
     ticketlist.cpp \
@@ -19,6 +21,8 @@ SOURCES += \
 HEADERS += \
     appstyle.h \
     frmmain.h \
+    projectlist.h \
+    projektverwaltung.h \
     ticket.h \
     ticketerstellen.h \
     ticketlist.h \
@@ -26,6 +30,7 @@ HEADERS += \
 
 FORMS += \
     frmmain.ui \
+    projektverwaltung.ui \
     ticketerstellen.ui \
     tiketwahl.ui
 

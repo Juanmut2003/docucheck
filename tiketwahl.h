@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QString>
 
+#include "projectlist.h"
 #include "ticket.h"
 #include "ticketlist.h"
 
@@ -16,7 +17,7 @@ class TiketWahl : public QDialog
     Q_OBJECT
 
 public:
-    explicit TiketWahl(TicketList &ticketList, QWidget *parent = nullptr);
+    explicit TiketWahl(TicketList &ticketList, ProjectList &projectList, QWidget *parent = nullptr);
     ~TiketWahl();
 
     Ticket getSelectedTicket() const;
@@ -29,6 +30,7 @@ private:
     void populateTicketCombo(const QString &projectFilter = QString());
     Ui::TiketWahl *ui;
     TicketList &tickets;
+    ProjectList &projects;
 };
 
 

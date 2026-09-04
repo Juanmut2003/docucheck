@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 
+#include "projectlist.h"
 #include "ticketlist.h"
 
 QT_BEGIN_NAMESPACE
@@ -22,13 +23,16 @@ public:
 private slots:
     void on_pushButtonSelectTicket_clicked();
     void on_pushButtonCreateTicket_clicked();
+    void on_pushButtonManageProjects_clicked();
     void on_pushButtonSave_clicked();
 
 private:
     void showTicket(const Ticket &ticket);
+    void refreshProjectCombo();
 
     Ui::frmMain *ui;
     TicketList tickets;
+    ProjectList projects;
     int currentTicketIndex = -1;
 };
 #endif // FRMMAIN_H
