@@ -394,12 +394,30 @@
              </widget>
             </item>
             <item row="5" column="1">
-             <widget class="QSpinBox" name="spinStoryPoints">
+             <widget class="FibonacciSpinBox" name="spinStoryPoints">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>72</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>72</width>
+                <height>16777215</height>
+               </size>
+              </property>
               <property name="alignment">
                <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
               </property>
               <property name="maximum">
-               <number>999</number>
+               <number>987</number>
               </property>
              </widget>
             </item>
@@ -477,6 +495,13 @@
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FibonacciSpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>fibonaccispinbox.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

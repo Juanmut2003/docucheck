@@ -70,6 +70,8 @@ frmMain::frmMain(QWidget *parent)
 {
     ui->setupUi(this);
 
+    ui->formUpdate->setAlignment(ui->spinStoryPoints, Qt::AlignRight);
+
     ui->centralwidget->setFocusPolicy(Qt::ClickFocus);
 
     ui->plainTextEditDescription->setTabChangesFocus(true);

@@ -58,7 +58,7 @@ inline void applyModernStyle(QApplication &app)
     }
     QPlainTextEdit, QTextEdit { padding: 8px 10px; }
     QComboBox { padding-right: 34px; }
-    QSpinBox { padding-right: 28px; }
+    QSpinBox { padding-right: 6px; }
     QLineEdit:hover, QPlainTextEdit:hover, QTextEdit:hover,
     QSpinBox:hover, QComboBox:hover { border-color: #A6ACB8; }
     QLineEdit:focus, QPlainTextEdit:focus, QTextEdit:focus,
@@ -162,7 +162,7 @@ inline void applyModernStyle(QApplication &app)
     QSpinBox::up-button {
         subcontrol-origin: border;
         subcontrol-position: top right;
-        width: 24px;
+        width: 20px;
         border: none;
         border-left: 1px solid #E1E4E9;
         border-top-right-radius: 8px;
@@ -171,7 +171,7 @@ inline void applyModernStyle(QApplication &app)
     QSpinBox::down-button {
         subcontrol-origin: border;
         subcontrol-position: bottom right;
-        width: 24px;
+        width: 20px;
         border: none;
         border-left: 1px solid #E1E4E9;
         border-top: 1px solid #E1E4E9;
