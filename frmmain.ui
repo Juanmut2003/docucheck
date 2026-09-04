@@ -19,8 +19,8 @@
      <rect>
       <x>530</x>
       <y>120</y>
-      <width>63</width>
-      <height>20</height>
+      <width>100</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="text">
@@ -32,8 +32,8 @@
      <rect>
       <x>530</x>
       <y>160</y>
-      <width>63</width>
-      <height>20</height>
+      <width>100</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="text">
@@ -45,8 +45,8 @@
      <rect>
       <x>530</x>
       <y>200</y>
-      <width>63</width>
-      <height>20</height>
+      <width>100</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="text">
@@ -58,8 +58,8 @@
      <rect>
       <x>530</x>
       <y>250</y>
-      <width>63</width>
-      <height>20</height>
+      <width>100</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="text">
@@ -71,8 +71,8 @@
      <rect>
       <x>530</x>
       <y>290</y>
-      <width>63</width>
-      <height>20</height>
+      <width>100</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="text">
@@ -84,8 +84,8 @@
      <rect>
       <x>530</x>
       <y>340</y>
-      <width>81</width>
-      <height>20</height>
+      <width>100</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="text">
@@ -95,10 +95,10 @@
    <widget class="QComboBox" name="comboBox_2">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>290</y>
-      <width>111</width>
-      <height>20</height>
+      <x>640</x>
+      <y>287</y>
+      <width>150</width>
+      <height>26</height>
      </rect>
     </property>
     <item>
@@ -120,10 +120,10 @@
    <widget class="QComboBox" name="comboBox_3">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>250</y>
-      <width>111</width>
-      <height>20</height>
+      <x>640</x>
+      <y>247</y>
+      <width>150</width>
+      <height>26</height>
      </rect>
     </property>
     <item>
@@ -150,10 +150,10 @@
    <widget class="QComboBox" name="comboBox_4">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>200</y>
-      <width>111</width>
-      <height>20</height>
+      <x>640</x>
+      <y>197</y>
+      <width>150</width>
+      <height>26</height>
      </rect>
     </property>
     <item>
@@ -170,10 +170,10 @@
    <widget class="QComboBox" name="comboBox_5">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>160</y>
-      <width>111</width>
-      <height>20</height>
+      <x>640</x>
+      <y>157</y>
+      <width>150</width>
+      <height>26</height>
      </rect>
     </property>
     <item>
@@ -195,10 +195,10 @@
    <widget class="QComboBox" name="comboBox_6">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>120</y>
-      <width>111</width>
-      <height>20</height>
+      <x>640</x>
+      <y>117</y>
+      <width>150</width>
+      <height>26</height>
      </rect>
     </property>
     <item>
@@ -297,9 +297,9 @@
    <widget class="QSpinBox" name="spinBox">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>340</y>
-      <width>111</width>
+      <x>640</x>
+      <y>337</y>
+      <width>150</width>
       <height>26</height>
      </rect>
     </property>
