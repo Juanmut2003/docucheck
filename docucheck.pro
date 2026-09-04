@@ -16,6 +16,7 @@ SOURCES += \
     tiketwahl.cpp
 
 HEADERS += \
+    appstyle.h \
     frmmain.h \
     ticket.h \
     ticketlist.h \
@@ -24,6 +25,9 @@ HEADERS += \
 FORMS += \
     frmmain.ui \
     tiketwahl.ui
+
+RESOURCES += \
+    resources.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

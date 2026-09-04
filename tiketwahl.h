@@ -23,7 +23,7 @@ public:
     int getSelectedIndex() const;
 
 private:
-    void onTicketErstellenClicked();
+    void onCreateTicketClicked();
     void addTicketItem(const QString &title);
     Ui::TiketWahl *ui;
     TicketList &tickets;

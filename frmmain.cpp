@@ -48,7 +48,7 @@ frmMain::frmMain(QWidget *parent)
 
     ui->centralwidget->setFocusPolicy(Qt::ClickFocus);
 
-    ui->plainTextEditBeschreibung->setTabChangesFocus(true);
+    ui->plainTextEditDescription->setTabChangesFocus(true);
 
     tickets.addDummyTickets();
 
@@ -66,17 +66,17 @@ frmMain::~frmMain()
 void frmMain::showTicket(const Ticket &t)
 {
     ui->lineEditName->setText(t.displayName());
-    ui->plainTextEditBeschreibung->setPlainText(t.description);
+    ui->plainTextEditDescription->setPlainText(t.description);
 
-    setComboValue(ui->comboBox_6, t.project);
-    setComboValue(ui->comboBox_5, priorityToString(t.priority));
-    setComboValue(ui->comboBox_4, ticketTypeToString(t.type));
-    setComboValue(ui->comboBox_3, statusToString(t.status));
-    setComboValue(ui->comboBox_2, t.assignee);
-    ui->spinBox->setValue(t.storyPoints);
+    setComboValue(ui->comboProject, t.project);
+    setComboValue(ui->comboPriority, priorityToString(t.priority));
+    setComboValue(ui->comboType, ticketTypeToString(t.type));
+    setComboValue(ui->comboState, statusToString(t.status));
+    setComboValue(ui->comboAssignee, t.assignee);
+    ui->spinStoryPoints->setValue(t.storyPoints);
 }
 
-void frmMain::on_pushButton_2_clicked()
+void frmMain::on_pushButtonSelectTicket_clicked()
 {
     TiketWahl dialog(tickets, this);
     if (dialog.exec() == QDialog::Accepted) {
@@ -85,7 +85,7 @@ void frmMain::on_pushButton_2_clicked()
     }
 }
 
-void frmMain::on_pushButton_clicked()
+void frmMain::on_pushButtonSave_clicked()
 {
     if (currentTicketIndex < 0)
         return;
@@ -95,13 +95,13 @@ void frmMain::on_pushButton_clicked()
     QString name = ui->lineEditName->text();
     name.remove(QRegularExpression(QStringLiteral("^#\\d+ - ")));
     t.title = name;
-    t.description = ui->plainTextEditBeschreibung->toPlainText();
-    t.project = ui->comboBox_6->currentText();
-    t.priority = priorityFromString(ui->comboBox_5->currentText());
-    t.type = ticketTypeFromString(ui->comboBox_4->currentText());
-    t.status = statusFromString(ui->comboBox_3->currentText());
-    t.assignee = ui->comboBox_2->currentText();
-    t.storyPoints = ui->spinBox->value();
+    t.description = ui->plainTextEditDescription->toPlainText();
+    t.project = ui->comboProject->currentText();
+    t.priority = priorityFromString(ui->comboPriority->currentText());
+    t.type = ticketTypeFromString(ui->comboType->currentText());
+    t.status = statusFromString(ui->comboState->currentText());
+    t.assignee = ui->comboAssignee->currentText();
+    t.storyPoints = ui->spinStoryPoints->value();
 
     tickets.update(currentTicketIndex, t);
 }
