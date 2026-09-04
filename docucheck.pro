@@ -12,6 +12,7 @@ SOURCES += \
     main.cpp \
     frmmain.cpp \
     ticket.cpp \
+    ticketerstellen.cpp \
     ticketlist.cpp \
     tiketwahl.cpp
 
@@ -19,11 +20,13 @@ HEADERS += \
     appstyle.h \
     frmmain.h \
     ticket.h \
+    ticketerstellen.h \
     ticketlist.h \
     tiketwahl.h
 
 FORMS += \
     frmmain.ui \
+    ticketerstellen.ui \
     tiketwahl.ui
 
 RESOURCES += \

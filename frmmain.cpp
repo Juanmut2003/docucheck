@@ -1,6 +1,7 @@
 #include "frmmain.h"
 #include "ui_frmmain.h"
 #include "tiketwahl.h"
+#include "ticketerstellen.h"
 
 #include <QComboBox>
 #include <QRegularExpression>
@@ -82,6 +83,16 @@ void frmMain::on_pushButtonSelectTicket_clicked()
     if (dialog.exec() == QDialog::Accepted) {
         currentTicketIndex = dialog.getSelectedIndex();
         showTicket(dialog.getSelectedTicket());
+    }
+}
+
+void frmMain::on_pushButtonCreateTicket_clicked()
+{
+    TicketErstellen dialog(tickets, this);
+    if (dialog.exec() == QDialog::Accepted) {
+        currentTicketIndex = dialog.getCreatedIndex();
+        if (currentTicketIndex >= 0)
+            showTicket(tickets.at(currentTicketIndex));
     }
 }
 

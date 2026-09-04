@@ -21,6 +21,7 @@ public:
 
 private slots:
     void on_pushButtonSelectTicket_clicked();
+    void on_pushButtonCreateTicket_clicked();
     void on_pushButtonSave_clicked();
 
 private:

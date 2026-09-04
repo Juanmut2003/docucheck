@@ -74,6 +74,16 @@
          </property>
         </spacer>
        </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonCreateTicket">
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="text">
+          <string>Create Ticket</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>

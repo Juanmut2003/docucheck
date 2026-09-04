@@ -23,7 +23,6 @@ public:
     int getSelectedIndex() const;
 
 private:
-    void onCreateTicketClicked();
     void onProjectFilterChanged();
     void addTicketItem(const QString &title, int ticketIndex);
     void populateProjectCombo();
