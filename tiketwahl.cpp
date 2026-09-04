@@ -1,6 +1,7 @@
 #include "tiketwahl.h"
 #include "ui_tiketwahl.h"
 #include <QComboBox>
+#include <QFont>
 
 void TiketWahl::addTicketItem(const QString &title, int ticketIndex)
 {
@@ -13,8 +14,13 @@ void TiketWahl::addTicketItem(const QString &title, int ticketIndex)
 void TiketWahl::populateProjectCombo()
 {
     QComboBox *combo = ui->comboProjectFilter;
-    combo->addItems(projects.all());
-    combo->setCurrentIndex(-1); // Beim Oeffnen soll kein Projekt vorausgewaehlt sein.
+    combo->addItem(tr("All Projects"), QString()); // Platzhalter fuer "kein Filter"
+    for (const QString &project : projects.all())
+        combo->addItem(project, project);
+
+    QFont allProjectsFont = combo->font();
+    allProjectsFont.setBold(true);
+    combo->setItemData(0, allProjectsFont, Qt::FontRole);
 }
 
 void TiketWahl::populateTicketCombo(const QString &projectFilter)
@@ -76,6 +82,6 @@ int TiketWahl::getSelectedIndex() const
 void TiketWahl::onProjectFilterChanged()
 {
     int index = ui->comboProjectFilter->currentIndex();
-    QString project = index >= 0 ? ui->comboProjectFilter->itemText(index) : QString();
+    QString project = index >= 0 ? ui->comboProjectFilter->itemData(index).toString() : QString();
     populateTicketCombo(project);
 }
