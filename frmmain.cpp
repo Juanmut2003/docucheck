@@ -133,7 +133,7 @@ void frmMain::on_pushButtonSelectTicket_clicked()
 
 void frmMain::on_pushButtonCreateTicket_clicked()
 {
-    TicketErstellen dialog(tickets, this);
+    TicketErstellen dialog(tickets, projects, this);
     if (dialog.exec() == QDialog::Accepted) {
         currentTicketIndex = dialog.getCreatedIndex();
         if (currentTicketIndex >= 0)
