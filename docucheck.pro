@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     assigneelist.cpp \
+    fibonaccispinbox.cpp \
     frmmain.cpp \
     projectlist.cpp \
     stammdatenverwaltung.cpp \
@@ -22,6 +23,7 @@ SOURCES += \
 HEADERS += \
     appstyle.h \
     assigneelist.h \
+    fibonaccispinbox.h \
     frmmain.h \
     projectlist.h \
     stammdatenverwaltung.h \

@@ -19,6 +19,25 @@ void setComboValue(QComboBox *combo, const QString &value)
     combo->setCurrentIndex(index);
 }
 
+// Wie setComboValue, aber ueber die Item-Daten statt den angezeigten Text,
+// da der leere Wert dort als "None" angezeigt wird.
+void setComboValueOrNone(QComboBox *combo, const QString &value)
+{
+    int index = combo->findData(value);
+    if (index < 0) {
+        combo->addItem(value, value);
+        index = combo->count() - 1;
+    }
+    combo->setCurrentIndex(index);
+}
+
+// Trennlinie nach dem "None"-Platzhalter (Index 0) einfuegen, damit er im
+// Dropdown von echten Werten unterscheidbar ist.
+void separateNoneItem(QComboBox *combo)
+{
+    combo->insertSeparator(1);
+}
+
 Priority priorityFromString(const QString &text)
 {
     if (text == QStringLiteral("Low"))  return Priority::Low;
@@ -48,6 +67,8 @@ frmMain::frmMain(QWidget *parent)
 {
     ui->setupUi(this);
 
+    ui->formUpdate->setAlignment(ui->spinStoryPoints, Qt::AlignRight);
+
     ui->centralwidget->setFocusPolicy(Qt::ClickFocus);
 
     ui->plainTextEditDescription->setTabChangesFocus(true);
@@ -73,15 +94,19 @@ frmMain::~frmMain()
 void frmMain::refreshProjectCombo()
 {
     ui->comboProject->clear();
-    ui->comboProject->addItem(QString()); // Platzhalter fuer "kein Projekt"
-    ui->comboProject->addItems(projects.all());
+    ui->comboProject->addItem(tr("None"), QString()); // Platzhalter fuer "kein Projekt"
+    for (const QString &project : projects.all())
+        ui->comboProject->addItem(project, project);
+    separateNoneItem(ui->comboProject);
 }
 
 void frmMain::refreshAssigneeCombo()
 {
     ui->comboAssignee->clear();
-    ui->comboAssignee->addItem(QString()); // Platzhalter fuer "kein Assignee"
-    ui->comboAssignee->addItems(assignees.all());
+    ui->comboAssignee->addItem(tr("None"), QString()); // Platzhalter fuer "kein Assignee"
+    for (const QString &assignee : assignees.all())
+        ui->comboAssignee->addItem(assignee, assignee);
+    separateNoneItem(ui->comboAssignee);
 }
 
 void frmMain::showTicket(const Ticket &t)
@@ -89,11 +114,11 @@ void frmMain::showTicket(const Ticket &t)
     ui->lineEditName->setText(t.displayName());
     ui->plainTextEditDescription->setPlainText(t.description);
 
-    setComboValue(ui->comboProject, t.project);
+    setComboValueOrNone(ui->comboProject, t.project);
     setComboValue(ui->comboPriority, priorityToString(t.priority));
     setComboValue(ui->comboType, ticketTypeToString(t.type));
     setComboValue(ui->comboState, statusToString(t.status));
-    setComboValue(ui->comboAssignee, t.assignee);
+    setComboValueOrNone(ui->comboAssignee, t.assignee);
     ui->spinStoryPoints->setValue(t.storyPoints);
 }
 
@@ -128,8 +153,8 @@ void frmMain::on_pushButtonManageProjects_clicked()
     // nachziehen, ohne die restlichen (evtl. ungespeicherten) Formularfelder anzutasten.
     if (currentTicketIndex >= 0 && currentTicketIndex < tickets.size()) {
         const Ticket &t = tickets.at(currentTicketIndex);
-        setComboValue(ui->comboProject, t.project);
-        setComboValue(ui->comboAssignee, t.assignee);
+        setComboValueOrNone(ui->comboProject, t.project);
+        setComboValueOrNone(ui->comboAssignee, t.assignee);
     }
 }
 
@@ -144,11 +169,11 @@ void frmMain::on_pushButtonSave_clicked()
     name.remove(QRegularExpression(QStringLiteral("^#\\d+ - ")));
     t.title = name;
     t.description = ui->plainTextEditDescription->toPlainText();
-    t.project = ui->comboProject->currentText();
+    t.project = ui->comboProject->currentData().toString();
     t.priority = priorityFromString(ui->comboPriority->currentText());
     t.type = ticketTypeFromString(ui->comboType->currentText());
     t.status = statusFromString(ui->comboState->currentText());
-    t.assignee = ui->comboAssignee->currentText();
+    t.assignee = ui->comboAssignee->currentData().toString();
     t.storyPoints = ui->spinStoryPoints->value();
 
     tickets.update(currentTicketIndex, t);
