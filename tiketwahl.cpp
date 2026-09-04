@@ -2,25 +2,12 @@
 #include "ui_tiketwahl.h"
 #include <QMessageBox>
 #include <QComboBox>
-#include <QFontMetrics>
-#include <QStyle>
-#include <QStyleOptionComboBox>
 
 void TiketWahl::addTicketItem(const QString &title)
 {
-    QComboBox *combo = ui->comboBoxBestehendeTickets;
-
-    // Exakte Breite des Textbereichs vom aktuellen Style erfragen
-    QStyleOptionComboBox opt;
-    opt.initFrom(combo);
-    const QRect editRect = combo->style()->subControlRect(
-        QStyle::CC_ComboBox, &opt, QStyle::SC_ComboBoxEditField, combo);
-    // Der native macOS-Style zeichnet den Text mit zusaetzlichem Innenabstand,
-    // daher eine groesszuegige Sicherheitsmarge abziehen.
-    const int maxTextWidth = editRect.width() - 18;
-
-    const QString shown = combo->fontMetrics().elidedText(title, Qt::ElideRight, maxTextWidth);
-    combo->addItem(shown);
+    QComboBox *combo = ui->comboExistingTickets;
+    combo->addItem(title);
+    // Vollstaendigen Titel als Tooltip hinterlegen, falls die Anzeige gekuerzt wird.
     combo->setItemData(combo->count() - 1, title, Qt::ToolTipRole);
 }
 
@@ -35,9 +22,9 @@ TiketWahl::TiketWahl(TicketList &ticketList, QWidget *parent)
         addTicketItem(t.displayName());
     }
 
-    connect(ui->pushButtonOK, &QPushButton::clicked, this, &TiketWahl::accept);
-    connect(ui->pushButtonAbbrechen, &QPushButton::clicked, this, &TiketWahl::reject);
-    connect(ui->pushButton, &QPushButton::clicked, this, &TiketWahl::onTicketErstellenClicked);
+    connect(ui->pushButtonOpen, &QPushButton::clicked, this, &TiketWahl::accept);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, this, &TiketWahl::reject);
+    connect(ui->pushButtonCreate, &QPushButton::clicked, this, &TiketWahl::onCreateTicketClicked);
 }
 
 
@@ -49,7 +36,7 @@ TiketWahl::~TiketWahl()
 
 Ticket TiketWahl::getSelectedTicket() const
 {
-    int index = ui->comboBoxBestehendeTickets->currentIndex();
+    int index = ui->comboExistingTickets->currentIndex();
     if (index >= 0 && index < tickets.size())
         return tickets.at(index);
     return Ticket{};
@@ -57,16 +44,16 @@ Ticket TiketWahl::getSelectedTicket() const
 
 int TiketWahl::getSelectedIndex() const
 {
-    int index = ui->comboBoxBestehendeTickets->currentIndex();
+    int index = ui->comboExistingTickets->currentIndex();
     if (index >= 0 && index < tickets.size())
         return index;
     return -1;
 }
 
-void TiketWahl::onTicketErstellenClicked()
+void TiketWahl::onCreateTicketClicked()
 {
-    QString name = ui->lineEdit->text().trimmed();
-    QString beschreibung = ui->textEdit->toPlainText().trimmed();
+    QString name = ui->lineEditName->text().trimmed();
+    QString beschreibung = ui->textEditDescription->toPlainText().trimmed();
 
     if (name.isEmpty()) {
         QMessageBox::warning(this, "Fehler", "Bitte einen Namen für das Ticket eingeben.");
@@ -79,10 +66,10 @@ void TiketWahl::onTicketErstellenClicked()
 
     tickets.add(neuesTicket);
     addTicketItem(tickets.at(tickets.size() - 1).displayName());
-    ui->comboBoxBestehendeTickets->setCurrentIndex(ui->comboBoxBestehendeTickets->count() - 1);
+    ui->comboExistingTickets->setCurrentIndex(ui->comboExistingTickets->count() - 1);
 
-    ui->lineEdit->clear();
-    ui->textEdit->clear();
+    ui->lineEditName->clear();
+    ui->textEditDescription->clear();
 
     // Neu erstelltes Ticket direkt in der Detailansicht öffnen
     accept();

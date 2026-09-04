@@ -16,6 +16,7 @@ SOURCES += \
     tiketwahl.cpp
 
 HEADERS += \
+    appstyle.h \
     frmmain.h \
     ticket.h \
     ticketlist.h \

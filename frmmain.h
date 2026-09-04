@@ -20,8 +20,8 @@ public:
     ~frmMain();
 
 private slots:
-    void on_pushButton_2_clicked();
-    void on_pushButton_clicked();
+    void on_pushButtonSelectTicket_clicked();
+    void on_pushButtonSave_clicked();
 
 private:
     void showTicket(const Ticket &ticket);
