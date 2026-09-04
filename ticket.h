@@ -5,14 +5,12 @@
 #include <QDateTime>
 #include <QList>
 
-// Priority of a ticket (see issue #6: Niedrig / Mittel / Hoch).
 enum class Priority {
     Low,
     Medium,
     High
 };
 
-// Workflow state of a ticket. Mirrors the "State" combo box on the main window.
 enum class Status {
     Planning,
     InProgress,
@@ -20,21 +18,17 @@ enum class Status {
     Production
 };
 
-// Kind of work a ticket describes. Mirrors the "Type" combo box.
 enum class TicketType {
     Feature,
     Bug
 };
 
-// Human readable text for the enum values (used for combo boxes / labels).
 QString priorityToString(Priority priority);
 QString statusToString(Status status);
 QString ticketTypeToString(TicketType type);
 
-// Simple data model for a single ticket. Holds every field shown in the UI:
-// name, description, project, priority, type, state, assignee, story points
-// and the creation date.
 struct Ticket {
+    int id = 0;
     QString title;
     QString description;
     QString project;
@@ -45,7 +39,9 @@ struct Ticket {
     int storyPoints = 0;
     QDateTime createdAt = QDateTime::currentDateTime();
 
-    // A handful of dummy tickets for testing / demo purposes.
+    // Anzeigename inkl. laufender Nummer, z.B. "#1 - Login-Bug"
+    QString displayName() const;
+
     static QList<Ticket> dummyTickets();
 };
 

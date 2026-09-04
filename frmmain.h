@@ -21,10 +21,13 @@ public:
 
 private slots:
     void on_pushButton_2_clicked();
+    void on_pushButton_clicked();
 
 private:
+    void showTicket(const Ticket &ticket);
+
     Ui::frmMain *ui;
-    // All existing tickets, seeded with dummy tickets on start (issue #7).
     TicketList tickets;
+    int currentTicketIndex = -1;
 };
 #endif // FRMMAIN_H

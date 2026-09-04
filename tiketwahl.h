@@ -20,12 +20,12 @@ public:
     ~TiketWahl();
 
     Ticket getSelectedTicket() const;
+    int getSelectedIndex() const;
 
 private:
     void onTicketErstellenClicked();
     void addTicketItem(const QString &title);
     Ui::TiketWahl *ui;
-    // Shared ticket model owned by the main window.
     TicketList &tickets;
 };
 

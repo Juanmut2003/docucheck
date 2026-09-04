@@ -32,7 +32,7 @@ TiketWahl::TiketWahl(TicketList &ticketList, QWidget *parent)
     ui->setupUi(this);
 
     for (const Ticket &t : tickets.all()) {
-        addTicketItem(t.title);
+        addTicketItem(t.displayName());
     }
 
     connect(ui->pushButtonOK, &QPushButton::clicked, this, &TiketWahl::accept);
@@ -54,6 +54,15 @@ Ticket TiketWahl::getSelectedTicket() const
         return tickets.at(index);
     return Ticket{};
 }
+
+int TiketWahl::getSelectedIndex() const
+{
+    int index = ui->comboBoxBestehendeTickets->currentIndex();
+    if (index >= 0 && index < tickets.size())
+        return index;
+    return -1;
+}
+
 void TiketWahl::onTicketErstellenClicked()
 {
     QString name = ui->lineEdit->text().trimmed();
@@ -69,9 +78,12 @@ void TiketWahl::onTicketErstellenClicked()
     neuesTicket.description = beschreibung;
 
     tickets.add(neuesTicket);
-    addTicketItem(neuesTicket.title);
+    addTicketItem(tickets.at(tickets.size() - 1).displayName());
     ui->comboBoxBestehendeTickets->setCurrentIndex(ui->comboBoxBestehendeTickets->count() - 1);
 
     ui->lineEdit->clear();
     ui->textEdit->clear();
+
+    // Neu erstelltes Ticket direkt in der Detailansicht öffnen
+    accept();
 }

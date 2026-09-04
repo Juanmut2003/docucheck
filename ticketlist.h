@@ -5,20 +5,15 @@
 
 #include "ticket.h"
 
-// Model that holds every existing ticket. It is created once when the
-// application starts and seeded with a few dummy tickets (see issue #7).
-// The "Select Ticket" dialog reads from it to fill the "Existing Tickets"
-// combo box; it is never shown directly in the main window.
 class TicketList
 {
 public:
     TicketList() = default;
 
-    // Adds a handful of dummy tickets so the list is not empty on start.
     void addDummyTickets();
 
-    // Appends a single ticket (e.g. one created in the dialog).
     void add(const Ticket &ticket);
+    void update(int index, const Ticket &ticket);
     void clear();
 
     bool isEmpty() const;
@@ -28,6 +23,7 @@ public:
 
 private:
     QList<Ticket> m_tickets;
+    int m_nextId = 1;
 };
 
 #endif // TICKETLIST_H

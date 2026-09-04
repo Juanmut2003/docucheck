@@ -133,7 +133,7 @@
     </item>
     <item>
      <property name="text">
-      <string>in Progress</string>
+      <string>In Progress</string>
      </property>
     </item>
     <item>
@@ -303,6 +303,9 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="maximum">
+     <number>999</number>
+    </property>
    </widget>
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
@@ -317,36 +320,50 @@
      <string>Select Ticket</string>
     </property>
    </widget>
-   <widget class="QLabel" name="labelName">
+   <widget class="QLabel" name="labelNameCaption">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>80</y>
       <width>141</width>
-      <height>61</height>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
-    </property>
-    <property name="wordWrap">
-     <bool>true</bool>
+     <string>Name</string>
     </property>
    </widget>
-   <widget class="QLabel" name="labelBeschreibung">
+   <widget class="QLineEdit" name="lineEditName">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>230</y>
-      <width>211</width>
-      <height>121</height>
+      <x>10</x>
+      <y>102</y>
+      <width>330</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelBeschreibungCaption">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>141</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>Description</string>
     </property>
-    <property name="wordWrap">
-     <bool>true</bool>
+   </widget>
+   <widget class="QPlainTextEdit" name="plainTextEditBeschreibung">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>162</y>
+      <width>330</width>
+      <height>200</height>
+     </rect>
     </property>
    </widget>
   </widget>
