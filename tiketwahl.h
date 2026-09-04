@@ -24,7 +24,10 @@ public:
 
 private:
     void onCreateTicketClicked();
-    void addTicketItem(const QString &title);
+    void onProjectFilterChanged();
+    void addTicketItem(const QString &title, int ticketIndex);
+    void populateProjectCombo();
+    void populateTicketCombo(const QString &projectFilter = QString());
     Ui::TiketWahl *ui;
     TicketList &tickets;
 };
