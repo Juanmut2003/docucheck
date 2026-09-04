@@ -1,7 +1,6 @@
 #include "tiketwahl.h"
 #include "ui_tiketwahl.h"
 #include <QComboBox>
-#include <QFont>
 
 void TiketWahl::addTicketItem(const QString &title, int ticketIndex)
 {
@@ -18,9 +17,8 @@ void TiketWahl::populateProjectCombo()
     for (const QString &project : projects.all())
         combo->addItem(project, project);
 
-    QFont allProjectsFont = combo->font();
-    allProjectsFont.setBold(true);
-    combo->setItemData(0, allProjectsFont, Qt::FontRole);
+    // Trennlinie zwischen dem Platzhalter und den echten Projekten statt Fettdruck.
+    combo->insertSeparator(1);
 }
 
 void TiketWahl::populateTicketCombo(const QString &projectFilter)

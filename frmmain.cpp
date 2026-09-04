@@ -5,7 +5,6 @@
 #include "stammdatenverwaltung.h"
 
 #include <QComboBox>
-#include <QFont>
 #include <QRegularExpression>
 
 namespace {
@@ -32,13 +31,11 @@ void setComboValueOrNone(QComboBox *combo, const QString &value)
     combo->setCurrentIndex(index);
 }
 
-// Item an Index 0 ("None") kursiv anzeigen, damit der Platzhalter im
+// Trennlinie nach dem "None"-Platzhalter (Index 0) einfuegen, damit er im
 // Dropdown von echten Werten unterscheidbar ist.
-void markFirstItemAsNone(QComboBox *combo)
+void separateNoneItem(QComboBox *combo)
 {
-    QFont noneFont = combo->font();
-    noneFont.setItalic(true);
-    combo->setItemData(0, noneFont, Qt::FontRole);
+    combo->insertSeparator(1);
 }
 
 Priority priorityFromString(const QString &text)
@@ -100,7 +97,7 @@ void frmMain::refreshProjectCombo()
     ui->comboProject->addItem(tr("None"), QString()); // Platzhalter fuer "kein Projekt"
     for (const QString &project : projects.all())
         ui->comboProject->addItem(project, project);
-    markFirstItemAsNone(ui->comboProject);
+    separateNoneItem(ui->comboProject);
 }
 
 void frmMain::refreshAssigneeCombo()
@@ -109,7 +106,7 @@ void frmMain::refreshAssigneeCombo()
     ui->comboAssignee->addItem(tr("None"), QString()); // Platzhalter fuer "kein Assignee"
     for (const QString &assignee : assignees.all())
         ui->comboAssignee->addItem(assignee, assignee);
-    markFirstItemAsNone(ui->comboAssignee);
+    separateNoneItem(ui->comboAssignee);
 }
 
 void frmMain::showTicket(const Ticket &t)
