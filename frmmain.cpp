@@ -1,6 +1,8 @@
 #include "frmmain.h"
 #include "ui_frmmain.h"
 #include "tiketwahl.h"
+#include "ticketerstellen.h"
+#include "stammdatenverwaltung.h"
 
 #include <QComboBox>
 #include <QRegularExpression>
@@ -50,7 +52,12 @@ frmMain::frmMain(QWidget *parent)
 
     ui->plainTextEditDescription->setTabChangesFocus(true);
 
+    projects.addDefaults();
+    assignees.addDefaults();
     tickets.addDummyTickets();
+
+    refreshProjectCombo();
+    refreshAssigneeCombo();
 
     if (!tickets.isEmpty()) {
         currentTicketIndex = 0;
@@ -61,6 +68,20 @@ frmMain::frmMain(QWidget *parent)
 frmMain::~frmMain()
 {
     delete ui;
+}
+
+void frmMain::refreshProjectCombo()
+{
+    ui->comboProject->clear();
+    ui->comboProject->addItem(QString()); // Platzhalter fuer "kein Projekt"
+    ui->comboProject->addItems(projects.all());
+}
+
+void frmMain::refreshAssigneeCombo()
+{
+    ui->comboAssignee->clear();
+    ui->comboAssignee->addItem(QString()); // Platzhalter fuer "kein Assignee"
+    ui->comboAssignee->addItems(assignees.all());
 }
 
 void frmMain::showTicket(const Ticket &t)
@@ -78,10 +99,37 @@ void frmMain::showTicket(const Ticket &t)
 
 void frmMain::on_pushButtonSelectTicket_clicked()
 {
-    TiketWahl dialog(tickets, this);
+    TiketWahl dialog(tickets, projects, this);
     if (dialog.exec() == QDialog::Accepted) {
         currentTicketIndex = dialog.getSelectedIndex();
         showTicket(dialog.getSelectedTicket());
+    }
+}
+
+void frmMain::on_pushButtonCreateTicket_clicked()
+{
+    TicketErstellen dialog(tickets, this);
+    if (dialog.exec() == QDialog::Accepted) {
+        currentTicketIndex = dialog.getCreatedIndex();
+        if (currentTicketIndex >= 0)
+            showTicket(tickets.at(currentTicketIndex));
+    }
+}
+
+void frmMain::on_pushButtonManageProjects_clicked()
+{
+    StammdatenVerwaltung dialog(projects, assignees, tickets, this);
+    dialog.exec();
+
+    refreshProjectCombo();
+    refreshAssigneeCombo();
+
+    // Falls Projekt oder Assignee des aktuell angezeigten Tickets geloescht wurden, hier
+    // nachziehen, ohne die restlichen (evtl. ungespeicherten) Formularfelder anzutasten.
+    if (currentTicketIndex >= 0 && currentTicketIndex < tickets.size()) {
+        const Ticket &t = tickets.at(currentTicketIndex);
+        setComboValue(ui->comboProject, t.project);
+        setComboValue(ui->comboAssignee, t.assignee);
     }
 }
 

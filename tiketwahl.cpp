@@ -1,30 +1,48 @@
 #include "tiketwahl.h"
 #include "ui_tiketwahl.h"
-#include <QMessageBox>
 #include <QComboBox>
 
-void TiketWahl::addTicketItem(const QString &title)
+void TiketWahl::addTicketItem(const QString &title, int ticketIndex)
 {
     QComboBox *combo = ui->comboExistingTickets;
-    combo->addItem(title);
+    combo->addItem(title, ticketIndex);
     // Vollstaendigen Titel als Tooltip hinterlegen, falls die Anzeige gekuerzt wird.
     combo->setItemData(combo->count() - 1, title, Qt::ToolTipRole);
 }
 
-TiketWahl::TiketWahl(TicketList &ticketList, QWidget *parent)
+void TiketWahl::populateProjectCombo()
+{
+    QComboBox *combo = ui->comboProjectFilter;
+    combo->addItems(projects.all());
+    combo->setCurrentIndex(-1); // Beim Oeffnen soll kein Projekt vorausgewaehlt sein.
+}
+
+void TiketWahl::populateTicketCombo(const QString &projectFilter)
+{
+    ui->comboExistingTickets->clear();
+
+    const QList<Ticket> &all = tickets.all();
+    for (int i = 0; i < all.size(); ++i) {
+        if (!projectFilter.isEmpty() && all.at(i).project != projectFilter)
+            continue;
+        addTicketItem(all.at(i).displayName(), i);
+    }
+}
+
+TiketWahl::TiketWahl(TicketList &ticketList, ProjectList &projectList, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::TiketWahl)
     , tickets(ticketList)
+    , projects(projectList)
 {
     ui->setupUi(this);
 
-    for (const Ticket &t : tickets.all()) {
-        addTicketItem(t.displayName());
-    }
+    populateProjectCombo();
+    populateTicketCombo();
 
     connect(ui->pushButtonOpen, &QPushButton::clicked, this, &TiketWahl::accept);
     connect(ui->pushButtonCancel, &QPushButton::clicked, this, &TiketWahl::reject);
-    connect(ui->pushButtonCreate, &QPushButton::clicked, this, &TiketWahl::onCreateTicketClicked);
+    connect(ui->comboProjectFilter, &QComboBox::currentIndexChanged, this, &TiketWahl::onProjectFilterChanged);
 }
 
 
@@ -36,41 +54,28 @@ TiketWahl::~TiketWahl()
 
 Ticket TiketWahl::getSelectedTicket() const
 {
-    int index = ui->comboExistingTickets->currentIndex();
-    if (index >= 0 && index < tickets.size())
+    int index = getSelectedIndex();
+    if (index >= 0)
         return tickets.at(index);
     return Ticket{};
 }
 
 int TiketWahl::getSelectedIndex() const
 {
-    int index = ui->comboExistingTickets->currentIndex();
-    if (index >= 0 && index < tickets.size())
-        return index;
-    return -1;
+    int comboIndex = ui->comboExistingTickets->currentIndex();
+    if (comboIndex < 0)
+        return -1;
+
+    bool ok = false;
+    int index = ui->comboExistingTickets->currentData().toInt(&ok);
+    if (!ok || index < 0 || index >= tickets.size())
+        return -1;
+    return index;
 }
 
-void TiketWahl::onCreateTicketClicked()
+void TiketWahl::onProjectFilterChanged()
 {
-    QString name = ui->lineEditName->text().trimmed();
-    QString beschreibung = ui->textEditDescription->toPlainText().trimmed();
-
-    if (name.isEmpty()) {
-        QMessageBox::warning(this, "Fehler", "Bitte einen Namen für das Ticket eingeben.");
-        return;
-    }
-
-    Ticket neuesTicket;
-    neuesTicket.title = name;
-    neuesTicket.description = beschreibung;
-
-    tickets.add(neuesTicket);
-    addTicketItem(tickets.at(tickets.size() - 1).displayName());
-    ui->comboExistingTickets->setCurrentIndex(ui->comboExistingTickets->count() - 1);
-
-    ui->lineEditName->clear();
-    ui->textEditDescription->clear();
-
-    // Neu erstelltes Ticket direkt in der Detailansicht öffnen
-    accept();
+    int index = ui->comboProjectFilter->currentIndex();
+    QString project = index >= 0 ? ui->comboProjectFilter->itemText(index) : QString();
+    populateTicketCombo(project);
 }

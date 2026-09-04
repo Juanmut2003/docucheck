@@ -111,6 +111,53 @@ inline void applyModernStyle(QApplication &app)
         color: #FFFFFF;
     }
 
+    /* ---------- ListWidget: gleiche Karten-Optik wie das ComboBox-Popup ---------- */
+    QListWidget {
+        background-color: #FFFFFF;
+        border: 1px solid #C7CCD4;
+        border-radius: 10px;
+        padding: 6px;
+        outline: none;
+    }
+    QListWidget::item {
+        padding: 8px 10px;
+        margin: 1px 0px;
+        border-radius: 6px;
+        min-height: 20px;
+        color: #1A1D26;
+    }
+    QListWidget::item:hover { background-color: #F3F4F7; }
+    QListWidget::item:selected,
+    QListWidget::item:selected:!active {
+        background-color: #4F46E5;
+        color: #FFFFFF;
+    }
+
+    /* ---------- TabWidget: aktiver Tab verschmilzt mit der darunterliegenden Karte ---------- */
+    QTabWidget::pane {
+        border: 1px solid #C7CCD4;
+        border-radius: 10px;
+        top: -1px;
+        background-color: #F2F3F6;
+    }
+    QTabBar::tab {
+        background: transparent;
+        border: none;
+        padding: 8px 18px;
+        margin-right: 4px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        color: #6B7280;
+        font-weight: 600;
+    }
+    QTabBar::tab:hover { background-color: #E7E9ED; color: #374151; }
+    QTabBar::tab:selected {
+        background-color: #F2F3F6;
+        color: #111827;
+        border: 1px solid #C7CCD4;
+        border-bottom: 1px solid #F2F3F6;
+    }
+
     /* ---------- SpinBox: gleiche Optik wie die ComboBox ---------- */
     QSpinBox::up-button {
         subcontrol-origin: border;
@@ -160,22 +207,43 @@ inline void applyModernStyle(QApplication &app)
 
     QPushButton#pushButtonSave,
     QPushButton#pushButtonCreate,
-    QPushButton#pushButtonOpen {
+    QPushButton#pushButtonOpen,
+    QPushButton#pushButtonAddProject,
+    QPushButton#pushButtonAddAssignee {
         background-color: #4F46E5;
         border-color: #4F46E5;
         color: #FFFFFF;
     }
     QPushButton#pushButtonSave:hover,
     QPushButton#pushButtonCreate:hover,
-    QPushButton#pushButtonOpen:hover {
+    QPushButton#pushButtonOpen:hover,
+    QPushButton#pushButtonAddProject:hover,
+    QPushButton#pushButtonAddAssignee:hover {
         background-color: #4338CA;
         border-color: #4338CA;
     }
     QPushButton#pushButtonSave:pressed,
     QPushButton#pushButtonCreate:pressed,
-    QPushButton#pushButtonOpen:pressed {
+    QPushButton#pushButtonOpen:pressed,
+    QPushButton#pushButtonAddProject:pressed,
+    QPushButton#pushButtonAddAssignee:pressed {
         background-color: #3730A3;
         border-color: #3730A3;
+    }
+
+    /* ---------- Destruktive Aktionen: dezent rot statt grau, ohne die Flaeche
+       komplett zu fuellen (bleibt im Ton der uebrigen sekundaeren Buttons) ---------- */
+    QPushButton[role="destructive"] {
+        color: #B91C1C;
+    }
+    QPushButton[role="destructive"]:hover {
+        background-color: #FEF2F2;
+        border-color: #FCA5A5;
+        color: #B91C1C;
+    }
+    QPushButton[role="destructive"]:pressed {
+        background-color: #FEE2E2;
+        border-color: #F87171;
     }
 
     /* ---------- Trennlinien ---------- */

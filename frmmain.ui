@@ -74,6 +74,26 @@
          </property>
         </spacer>
        </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonManageProjects">
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="text">
+          <string>Manage Projects/Assignees</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonCreateTicket">
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="text">
+          <string>Create Ticket</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>
@@ -261,28 +281,7 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QComboBox" name="comboProject">
-              <item>
-               <property name="text">
-                <string>Star Wars 10</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Bermuda Dreieck</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Atlantis</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Area 51</string>
-               </property>
-              </item>
-             </widget>
+             <widget class="QComboBox" name="comboProject"/>
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="labelPriority">
@@ -382,23 +381,7 @@
              </widget>
             </item>
             <item row="4" column="1">
-             <widget class="QComboBox" name="comboAssignee">
-              <item>
-               <property name="text">
-                <string>CR7 Juan Siuuuu</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Flooor</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Lionel Arian Pepsi</string>
-               </property>
-              </item>
-             </widget>
+             <widget class="QComboBox" name="comboAssignee"/>
             </item>
             <item row="5" column="0">
              <widget class="QLabel" name="labelStoryPoints">

@@ -28,6 +28,22 @@ void TicketList::clear()
     m_tickets.clear();
 }
 
+void TicketList::clearProject(const QString &projectName)
+{
+    for (Ticket &t : m_tickets) {
+        if (t.project == projectName)
+            t.project.clear();
+    }
+}
+
+void TicketList::clearAssignee(const QString &assigneeName)
+{
+    for (Ticket &t : m_tickets) {
+        if (t.assignee == assigneeName)
+            t.assignee.clear();
+    }
+}
+
 bool TicketList::isEmpty() const
 {
     return m_tickets.isEmpty();

@@ -15,6 +15,8 @@ public:
     void add(const Ticket &ticket);
     void update(int index, const Ticket &ticket);
     void clear();
+    void clearProject(const QString &projectName);
+    void clearAssignee(const QString &assigneeName);
 
     bool isEmpty() const;
     int size() const;
