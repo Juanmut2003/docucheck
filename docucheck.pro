@@ -13,27 +13,34 @@ SOURCES += \
     assigneelist.cpp \
     fibonaccispinbox.cpp \
     frmmain.cpp \
+    logindialog.cpp \
     projectlist.cpp \
     stammdatenverwaltung.cpp \
     ticket.cpp \
     ticketerstellen.cpp \
     ticketlist.cpp \
-    tiketwahl.cpp
+    tiketwahl.cpp \
+    user.cpp \
+    userlist.cpp
 
 HEADERS += \
     appstyle.h \
     assigneelist.h \
     fibonaccispinbox.h \
     frmmain.h \
+    logindialog.h \
     projectlist.h \
     stammdatenverwaltung.h \
     ticket.h \
     ticketerstellen.h \
     ticketlist.h \
-    tiketwahl.h
+    tiketwahl.h \
+    user.h \
+    userlist.h
 
 FORMS += \
     frmmain.ui \
+    logindialog.ui \
     stammdatenverwaltung.ui \
     ticketerstellen.ui \
     tiketwahl.ui
