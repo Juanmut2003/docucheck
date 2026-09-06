@@ -208,8 +208,10 @@ inline void applyModernStyle(QApplication &app)
     QPushButton#pushButtonSave,
     QPushButton#pushButtonCreate,
     QPushButton#pushButtonOpen,
+    QPushButton#pushButtonLogin,
     QPushButton#pushButtonAddProject,
-    QPushButton#pushButtonAddAssignee {
+    QPushButton#pushButtonAddAssignee,
+    QPushButton#pushButtonAddUser {
         background-color: #4F46E5;
         border-color: #4F46E5;
         color: #FFFFFF;
@@ -217,16 +219,20 @@ inline void applyModernStyle(QApplication &app)
     QPushButton#pushButtonSave:hover,
     QPushButton#pushButtonCreate:hover,
     QPushButton#pushButtonOpen:hover,
+    QPushButton#pushButtonLogin:hover,
     QPushButton#pushButtonAddProject:hover,
-    QPushButton#pushButtonAddAssignee:hover {
+    QPushButton#pushButtonAddAssignee:hover,
+    QPushButton#pushButtonAddUser:hover {
         background-color: #4338CA;
         border-color: #4338CA;
     }
     QPushButton#pushButtonSave:pressed,
     QPushButton#pushButtonCreate:pressed,
     QPushButton#pushButtonOpen:pressed,
+    QPushButton#pushButtonLogin:pressed,
     QPushButton#pushButtonAddProject:pressed,
-    QPushButton#pushButtonAddAssignee:pressed {
+    QPushButton#pushButtonAddAssignee:pressed,
+    QPushButton#pushButtonAddUser:pressed {
         background-color: #3730A3;
         border-color: #3730A3;
     }

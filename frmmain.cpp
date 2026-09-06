@@ -61,13 +61,19 @@ TicketType ticketTypeFromString(const QString &text)
 
 } // namespace
 
-frmMain::frmMain(QWidget *parent)
+frmMain::frmMain(const User &user, UserList &userList, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::frmMain)
+    , users(userList)
+    , currentUser(user)
 {
     ui->setupUi(this);
 
     ui->formUpdate->setAlignment(ui->spinStoryPoints, Qt::AlignRight);
+
+    ui->labelCurrentUser->setText(tr("%1  (%2)")
+                                      .arg(currentUser.username, roleToString(currentUser.role)));
+    applyRolePermissions();
 
     ui->centralwidget->setFocusPolicy(Qt::ClickFocus);
 
@@ -141,9 +147,25 @@ void frmMain::on_pushButtonCreateTicket_clicked()
     }
 }
 
+void frmMain::applyRolePermissions()
+{
+    // Nur Admin/Teamlead darf Projekte, Assignees und Benutzer verwalten.
+    // Developer sehen den Button gar nicht erst.
+    ui->pushButtonManageProjects->setVisible(currentUser.canManageBaseData());
+}
+
+void frmMain::on_pushButtonLogout_clicked()
+{
+    m_logoutRequested = true;
+    close();
+}
+
 void frmMain::on_pushButtonManageProjects_clicked()
 {
-    StammdatenVerwaltung dialog(projects, assignees, tickets, this);
+    if (!currentUser.canManageBaseData())
+        return;
+
+    StammdatenVerwaltung dialog(projects, assignees, tickets, users, currentUser.username, this);
     dialog.exec();
 
     refreshProjectCombo();
